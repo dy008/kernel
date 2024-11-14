@@ -13,9 +13,10 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq/linux-5.10.y-rk35xx"
+        default: "dy008/linux-5.10.y-rk35xx"
         type: choice
         options:
+          - dy008/linux-5.10.y-rk35xx
           - unifreq/linux-5.10.y-rk35xx
           - codesnas/linux-5.10.y-rk35xx
           - armbian/linux-rockchip@rk-6.1-rkr3
@@ -65,9 +66,10 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-rk3588-ophub"
+        default: "-rk3588-dy008"
         type: choice
         options:
+          - -rk3588-dy008
           - -rk3588-ophub
           - -happy-new-year
           - -dragon-boat-festival
@@ -147,12 +149,12 @@ jobs:
         run: |
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
-          ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: dy008/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
