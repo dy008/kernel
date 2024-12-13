@@ -13,18 +13,18 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "dy008/linux-5.10.y-rk35xx"
+        default: "dy008/linux-rockchip@rk-6.1-rkr4.1"
         type: choice
         options:
           - dy008/linux-5.10.y-rk35xx
-          - dy008/linux-rockchip@rk-6.1-rkr3
+          - dy008/linux-rockchip@rk-6.1-rkr4.1
           - unifreq/linux-5.10.y-rk35xx
           - codesnas/linux-5.10.y-rk35xx
           - armbian/linux-rockchip@rk-6.1-rkr4.1
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "5.10.y"
+        default: "6.1.y"
         type: choice
         options:
           - 5.10.y
@@ -72,15 +72,6 @@ on:
         options:
           - -rk3588-dy008
           - -rk3588-ophub
-          - -happy-new-year
-          - -dragon-boat-festival
-          - -mid-autumn-festival
-          - -happy-national-day
-          - -merry-christmas
-          - -spring-plowing
-          - -summer-growing
-          - -autumn-harvesting
-          - -winter-storing
           - -yourname
       kernel_config:
         description: "Set the path of kernel .config"
