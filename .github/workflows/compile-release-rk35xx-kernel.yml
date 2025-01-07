@@ -13,16 +13,17 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq/linux-5.10.y-rk35xx"
+        default: "dy008/linux-rockchip@rk-6.1-rkr4.1"
         type: choice
         options:
           - unifreq/linux-5.10.y-rk35xx
           - codesnas/linux-5.10.y-rk35xx
           - armbian/linux-rockchip@rk-6.1-rkr4.1
+          - dy008/linux-rockchip@rk-6.1-rkr4.1
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "5.10.y"
+        default: "6.1.y"
         type: choice
         options:
           - 5.10.y
@@ -65,7 +66,7 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-rk35xx-ophub"
+        default: "-rk35xx-dy008"
         type: choice
         options:
           - -rk35xx-ophub
@@ -78,7 +79,7 @@ on:
           - -summer-growing
           - -autumn-harvesting
           - -winter-storing
-          - -yourname
+          - -rk35xx-dy008
       kernel_config:
         description: "Set the path of kernel .config"
         required: false
@@ -147,12 +148,12 @@ jobs:
         run: |
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
-          ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: dy008/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
@@ -175,7 +176,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             - The kernel can be used to compile Armbian and OpenWrt.
-            - The kernel source code comes from: unifreq/linux-5.10.y-rk35xx
+            - The kernel source code comes from: dy008/linux-rockchip@rk-6.1-rkr4.1
             - The kernel compilation toolchain: gcc
             - This is a dedicated kernel for `Rockchip rk3528/rk3566/rk3568` and is not compatible with other series.
             - 这是 `Rockchip rk3528/rk3566/rk3568` 专用内核，和其他系列不通用。
