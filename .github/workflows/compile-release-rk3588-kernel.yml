@@ -19,6 +19,7 @@ on:
           - unifreq/linux-5.10.y-rk35xx
           - codesnas/linux-5.10.y-rk35xx
           - armbian/linux-rockchip@rk-6.1-rkr5
+          - dy008/linux-rockchip@rk-6.1-rkr5
       kernel_version:
         description: "Select kernel version"
         required: false
