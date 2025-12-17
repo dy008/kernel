@@ -18,6 +18,7 @@ on:
         options:
           - unifreq
           - ophub
+          - dy008
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -88,7 +89,7 @@ on:
           - -summer-growing
           - -autumn-harvesting
           - -winter-storing
-          - -yourname
+          - -dy008
       kernel_config:
         description: "Set the path of kernel .config"
         required: false
@@ -174,8 +175,8 @@ jobs:
         run: |
           # Create a docker mapping directory
           mkdir -p /builder/{compile-kernel/{kernel,output},ccache}
-          ln -sf /builder/compile-kernel/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/compile-kernel/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/compile-kernel/kernel /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/compile-kernel/output /home/runner/work/_actions/dy008/amlogic-s9xxx-armbian/main/compile-kernel/output
 
           # Pull the Armbian Docker image
           docker run -d --privileged \
@@ -215,7 +216,7 @@ jobs:
             kernel-mainline-${{ inputs.kernel_toolchain }}-${{ inputs.kernel_version }}-
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: dy008/amlogic-s9xxx-armbian@main
         if: ${{ steps.pull.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
