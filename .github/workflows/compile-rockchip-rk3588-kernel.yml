@@ -22,6 +22,9 @@ on:
           - ophub/linux-5.10.y-rk35xx
           - armbian/linux-rockchip@rk-6.1-rkr6.1
           - armbian/linux-rockchip@rk-6.1-rkr5.1
+          - dy008/linux-rockchip@rk-6.1-rkr6.1
+          - dy008/linux-rockchip@rk-6.1-rkr5.1
+          - dy008/linux-6.1.y-rockchip
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -84,7 +87,7 @@ on:
           - -summer-growing
           - -autumn-harvesting
           - -winter-storing
-          - -yourname
+          - -rk3588-dy008
       kernel_config:
         description: "Set the path of kernel .config"
         required: false
@@ -180,7 +183,7 @@ jobs:
             kernel-rk3588-${{ inputs.kernel_toolchain }}-${{ inputs.kernel_version }}-
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: dy008/amlogic-s9xxx-armbian@main
         if: ${{ steps.disk.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
