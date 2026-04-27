@@ -24,6 +24,7 @@ on:
           - armbian/linux-rockchip@rk-6.1-rkr5.1
           - dy008/linux-rockchip@rk-6.1-rkr6.1
           - dy008/linux-rockchip@rk-6.1-rkr5.1
+          - dy008/linux-6.1.y-rockchip
       kernel_version:
         description: "Select kernel version"
         required: false
